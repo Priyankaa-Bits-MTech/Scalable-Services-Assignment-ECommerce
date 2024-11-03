@@ -10,7 +10,7 @@ import com.ecommerce.products.repo.ProductRepository;
 
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductResource {
 
 	@Autowired
@@ -20,4 +20,5 @@ public class ProductResource {
 	private  ResponseEntity<Object> getAllProducts() {
 		return ResponseEntity.ok(productRepo.findAll());
 	}
+	
 }

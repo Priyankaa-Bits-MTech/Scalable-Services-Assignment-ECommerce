@@ -7,17 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.products.repo.CategoryRepository;
+import com.ecommerce.products.repo.ProductRepository;
 
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 public class CategoryResource {
-
+	
 	@Autowired
 	private CategoryRepository  categoryRepo;
-	
+
 	@GetMapping
 	private  ResponseEntity<Object> getAllCategories() {
 		return ResponseEntity.ok(categoryRepo.findAll());
+	
 	}
+	
+
 }
