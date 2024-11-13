@@ -1,14 +1,13 @@
-package com.ecommerce.Shipping.controller;
+package com.ecommerce.shipping.controller;
 
 //import com.ecommerce.Shipping.service.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.ecommerce.Shipping.repository.ShipmentRepository;
-
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ecommerce.shipping.repository.ShipmentRepository;
 
 @RestController
 @RequestMapping("/shipments")
