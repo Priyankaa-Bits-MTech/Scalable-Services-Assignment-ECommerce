@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="api-gateway/src/main/java"/>
+	<classpathentry kind="src" path="api-gateway/src/test/java"/>
+	<classpathentry kind="src" path="products/src/main/java"/>
+	<classpathentry kind="src" path="products/src/test/java"/>
+	<classpathentry kind="src" path="service-discovery/src/main/java"/>
+	<classpathentry kind="src" path="service-discovery/src/test/java"/>
+	<classpathentry kind="src" path="users/src/main/java"/>
+	<classpathentry kind="src" path="users/src/test/java"/>
+	<classpathentry kind="lib" path="api-gateway/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="products/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="service-discovery/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="users/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
