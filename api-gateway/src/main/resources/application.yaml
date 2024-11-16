@@ -19,7 +19,7 @@ spring:
       - id: users
         uri: lb://users
         predicates:
-        - Path=/auth/**
+        - Path=/auth/**,/users/**
         # No filters required
         
       - id: products
