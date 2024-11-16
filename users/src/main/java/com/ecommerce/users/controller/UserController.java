@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = {"/users"})
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -20,26 +20,26 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/get-all-users")
+    @GetMapping
     public ResponseEntity<List<User>> allUsers() {
         List <User> users = userService.findAll();
 
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/get-user-by-id/{id}")
+    @GetMapping("/{id}")
     Optional<User> getUserById(@PathVariable Long id) {
 
         return Optional.ofNullable(userService.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException(id)));
     }
 
-    @GetMapping("/get-user-by-email/{email}")
+    @GetMapping("/{email}")
     User getUserByEmail(@PathVariable String email) {
         return userService.getUserDetails(email);
     }
 
-    @PutMapping("/update-user/{id}")
+    @PutMapping("/{id}")
     User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
         return userService.findUserById(id)
@@ -57,7 +57,7 @@ public class UserController {
                 });
     }
 
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/{id}")
     String deleteUser(@PathVariable Long id) {
 
         userService.deleteUserById(id);
