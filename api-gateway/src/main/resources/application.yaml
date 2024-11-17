@@ -19,14 +19,36 @@ spring:
       - id: users
         uri: lb://users
         predicates:
-        - Path=/auth/**,/users/**
+        - Path=/auth/**
         # No filters required
+        
+      - id: users
+        uri: lb://users
+        predicates:
+        - Path=/user/**
+        filters:
+        - EcommerceApiAuthFilter
         
       - id: products
         uri: lb://products
         predicates:
         - Path=/products/**,/categories/**
-
+        filters:
+        - EcommerceApiAuthFilter
+        
+      - id: orders
+        uri: lb://orders
+        predicates:
+        - Path=/orders/**,/cart/**
+        filters:
+        - EcommerceApiAuthFilter
+        
+      - id: shipping
+        uri: lb://shipping
+        predicates:
+        - Path=/shipments/**
+        filters:
+        - EcommerceApiAuthFilter
                         
 server: 
   port: 8765

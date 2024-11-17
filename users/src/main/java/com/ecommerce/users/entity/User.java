@@ -16,8 +16,6 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-
-
     private Long id;
     private String name;
     private Long mobile;
