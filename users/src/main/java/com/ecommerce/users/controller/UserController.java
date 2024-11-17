@@ -3,13 +3,16 @@ package com.ecommerce.users.controller;
 import com.ecommerce.users.entity.User;
 import com.ecommerce.users.exception.UserNotFoundException;
 import com.ecommerce.users.services.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = {"/api"})
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -17,44 +20,36 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    List<User> allUsers() {
-        return userService.findAll();
+    @GetMapping
+    public ResponseEntity<List<User>> allUsers() {
+        List <User> users = userService.findAll();
+
+        return ResponseEntity.ok(users);
     }
 
-
-    @PostMapping("/users")
-    String newUser(@RequestBody User newUser) {
-        return userService.registerUser(newUser);
-    }
-
-    // Single item
-
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     Optional<User> getUserById(@PathVariable Long id) {
 
         return Optional.ofNullable(userService.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException(id)));
     }
 
-    @GetMapping("/users/email/{email}")
+    @GetMapping("/{email}")
     User getUserByEmail(@PathVariable String email) {
-
         return userService.getUserDetails(email);
     }
 
-    @GetMapping("/users/valid/{email}/{password}")
-    String isUserValid(@PathVariable String email, @PathVariable String password) {
-
-        return userService.isValidCredential(email, password);
-    }
-
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
         return userService.findUserById(id)
                 .map(user -> {
                     user.setName(newUser.getName());
+                    user.setPassword(newUser.getPassword());
+                    user.setAddress(newUser.getAddress());
+                    user.setMobile(newUser.getMobile());
+                    user.setPinCode(newUser.getPinCode());
+
                     return userService.saveUser(newUser);
                 })
                 .orElseGet(() -> {
@@ -62,8 +57,11 @@ public class UserController {
                 });
     }
 
-    @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    String deleteUser(@PathVariable Long id) {
+
         userService.deleteUserById(id);
+        return "Successfully deleted";
     }
+
 }
