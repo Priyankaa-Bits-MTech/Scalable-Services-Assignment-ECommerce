@@ -1,4 +1,4 @@
-package com.ecommerce.api_gateway;
+package com.ecommerce.api_gateway.exception;
 
 import java.util.Map;
 
@@ -20,12 +20,15 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import reactor.core.publisher.Mono;
 
+@Component
+@Order(Integer.MIN_VALUE)
+class LingoGlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 
-class EcommerceGlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
-
-    public EcommerceGlobalExceptionHandler(final ErrorAttributes errorAttributes,
+    public LingoGlobalExceptionHandler(final ErrorAttributes errorAttributes,
                                         final WebProperties.Resources resources,
                                         final ApplicationContext applicationContext,
                                         final ServerCodecConfigurer configurer) {
@@ -58,7 +61,13 @@ class EcommerceGlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
         if (throwable instanceof ResponseStatusException) {
             httpStatus = (HttpStatus) ((ResponseStatusException) throwable).getStatusCode();
         } 
- 
+        else if (throwable instanceof ExpiredJwtException) {
+        	errorMap.put("message","Session Expired!, Kindly login again");
+            httpStatus= HttpStatus.UNAUTHORIZED;
+        } 
+        else if (throwable instanceof JwtException) {
+            httpStatus= HttpStatus.UNAUTHORIZED;
+        } 
         else {
         	httpStatus =  HttpStatus.INTERNAL_SERVER_ERROR;
         }
