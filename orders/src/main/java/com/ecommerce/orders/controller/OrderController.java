@@ -1,6 +1,8 @@
 package com.ecommerce.orders.controller;
 
+import com.ecommerce.orders.bean.OrderProductBean;
 import com.ecommerce.orders.entity.OrderData;
+import com.ecommerce.orders.proxy.ProductServiceProxy;
 import com.ecommerce.orders.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+    
+    @Autowired
+    private ProductServiceProxy productService;
 
     // Get all orders
     @GetMapping
@@ -24,10 +29,14 @@ public class OrderController {
 
     // Get a specific order by ID
     @GetMapping("/{orderId}")
-    public ResponseEntity<OrderData> getOrderById(@PathVariable Integer orderId) {
+    public ResponseEntity<OrderProductBean> getOrderById(@PathVariable("orderId") Integer orderId) {
         OrderData order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found with ID: " + orderId));
-        return ResponseEntity.ok(order);
+        
+       var productIds= order.getProducts().stream().map(p -> p.getId()).toList();
+       var products=  productService.getAllProducts(productIds).getBody();
+       var orderResponse=new OrderProductBean(order,products);
+        return ResponseEntity.ok(orderResponse);
     }
 
     // Create a new order

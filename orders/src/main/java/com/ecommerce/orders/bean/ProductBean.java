@@ -1,20 +1,9 @@
-package com.ecommerce.products.entity;
+package com.ecommerce.orders.bean;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+public class ProductBean {
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-@Entity
-public class Product {
-	
-	@Id
-	@GeneratedValue
 	private long id;
 	
 	private String title;
@@ -30,34 +19,6 @@ public class Product {
 	private LocalDateTime created_at;
 	
 	private LocalDateTime updated_at;
-	
-	
-	public Product() {
-		super();
-		this.id = 0;
-		this.title = "";
-		this.description = "";
-		this.imageUrl = "";
-		this.price = 0.00;
-		this.quantity = 0;
-		this.created_at = LocalDateTime.now();
-		this.updated_at = LocalDateTime.now();
-	}
-
-	
-
-	public Product(long id,String title, String description, String imageUrl, double price,
-			long quantity, LocalDateTime created_at, LocalDateTime updated_at) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.imageUrl = imageUrl;
-		this.price = price;
-		this.quantity = quantity;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
-	}
 
 	public long getId() {
 		return id;
@@ -122,5 +83,20 @@ public class Product {
 	public void setUpdated_at(LocalDateTime updated_at) {
 		this.updated_at = updated_at;
 	}
+
+	public ProductBean(long id, String title, String description, String imageUrl, double price,
+			long quantity, LocalDateTime created_at, LocalDateTime updated_at) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.price = price;
+		this.quantity = quantity;
+		this.created_at = created_at;
+		this.updated_at = updated_at;
+	}
+	
+	protected ProductBean() {}
 	
 }

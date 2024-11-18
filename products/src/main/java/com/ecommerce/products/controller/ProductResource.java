@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.products.entity.Product;
 import com.ecommerce.products.repo.ProductRepository;
 
 
@@ -21,7 +22,7 @@ public class ProductResource {
 	private ProductRepository  productRepo;
 	
 	@GetMapping
-	private  ResponseEntity<Object> getAllProducts(@RequestParam(name = "items",required = false) List<Long> items) {
+	private  ResponseEntity<List<Product>> getAllProducts(@RequestParam(name = "items",required = false) List<Long> items) {
 		if(items==null || items.isEmpty()) {
 		return ResponseEntity.ok(productRepo.findAll());
 		}

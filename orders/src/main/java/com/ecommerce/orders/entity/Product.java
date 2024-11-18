@@ -10,17 +10,17 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Product {
     @Id
-    private Integer id;
+    private Long id;
     
     @ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
     private OrderData orderData;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -32,7 +32,7 @@ public class Product {
 		this.orderData = orderData;
 	}
 
-	public Product(Integer id, OrderData orderData) {
+	public Product(Long id, OrderData orderData) {
 		super();
 		this.id = id;
 		this.orderData = orderData;
