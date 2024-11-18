@@ -1,7 +1,5 @@
 package com.ecommerce.orders.entity;
 
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,33 +11,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Cart implements Serializable {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cartId;
+    
 
-    private Integer userId;
+    private String userId;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cart")
     private Set<OrderData> orders;
 
-    public Cart(Integer cartId, Integer userId, Set<OrderData> orders) {
+    public Cart(Integer cartId, String userId, Set<OrderData> orders) {
 		super();
 		this.cartId = cartId;
 		this.userId = userId;
 		this.orders = orders;
 	}
     
-    public Cart() {
-		super();
-		this.cartId = 0;
-		this.userId = 0;
-		this.orders = new HashSet<OrderData>();
-	}
+    public Cart() {}
     
-
-	private static final long serialVersionUID = 1L;
 
 	public Integer getCartId() {
 		return cartId;
@@ -49,11 +41,11 @@ public class Cart implements Serializable {
 		this.cartId = cartId;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
