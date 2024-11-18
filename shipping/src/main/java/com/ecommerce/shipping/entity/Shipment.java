@@ -16,7 +16,7 @@ public class Shipment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	private Long orderId;
+	private Integer orderId;
 	private String userId;
 	private Integer status;
 
@@ -59,11 +59,11 @@ public class Shipment {
 	public void setShippingDate(LocalDate shippingDate) {
 		this.shippingDate = shippingDate;
 	}
-	public Long getOrderId() {
+	public Integer getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(Long orderId) {
+	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
 
@@ -92,7 +92,7 @@ public class Shipment {
     // Constructors, getters, and setters
     public Shipment() {}
 
-	public Shipment(Long id, Long orderId, String userId, Integer status, String destination, Double weight,
+	public Shipment(Long id, Integer orderId, String userId, Integer status, String destination, Double weight,
 			Double shippingCost, LocalDate shippingDate) {
 		super();
 		this.id = id;

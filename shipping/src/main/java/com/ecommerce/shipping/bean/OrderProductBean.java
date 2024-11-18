@@ -1,9 +1,8 @@
-package com.ecommerce.orders.bean;
+package com.ecommerce.shipping.bean;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.ecommerce.orders.entity.OrderData;
 
 public class OrderProductBean {
 	private Integer orderId;
@@ -19,15 +18,6 @@ public class OrderProductBean {
 	public OrderProductBean() {
 	}
 
-	public OrderProductBean(OrderData order, List<ProductBean> products) {
-		super();
-		orderId = order.getOrderId();
-		orderDate = order.getOrderDate();
-		orderDesc = order.getOrderDesc();
-		orderFee = order.getOrderFee();
-
-		this.products = products;
-	}
 
 	public Integer getOrderId() {
 		return orderId;
