@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/get-all-users")
+    @GetMapping
     public ResponseEntity<List<User>> allUsers() {
         List <User> users = userService.findAll();
 
@@ -39,7 +39,7 @@ public class UserController {
         return userService.getUserDetails(email);
     }
 
-    @PutMapping("/update-user/{id}")
+    @PutMapping("/{id}")
     User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
         return userService.findUserById(id)
@@ -57,7 +57,7 @@ public class UserController {
                 });
     }
 
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/{id}")
     String deleteUser(@PathVariable Long id) {
 
         userService.deleteUserById(id);
