@@ -57,7 +57,7 @@ class LingoGlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
        
     	errorMap.remove("error");
         errorMap.remove("status");
-
+        
         if (throwable instanceof ResponseStatusException) {
             httpStatus = (HttpStatus) ((ResponseStatusException) throwable).getStatusCode();
         } 
