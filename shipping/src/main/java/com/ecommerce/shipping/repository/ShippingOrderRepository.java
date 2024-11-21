@@ -7,6 +7,5 @@ import com.ecommerce.shipping.entity.Shipment;
 
 
 public interface ShippingOrderRepository extends JpaRepository<Shipment, Long> {
-    java.util.Optional<Shipment> findByOrderId(Long orderId);
 
 }

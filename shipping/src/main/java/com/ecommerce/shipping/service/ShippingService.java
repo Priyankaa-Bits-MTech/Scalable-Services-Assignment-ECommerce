@@ -3,6 +3,7 @@ package com.ecommerce.shipping.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.shipping.bean.ShipmentReqBean;
 import com.ecommerce.shipping.bean.ShippingResponseBean;
 import com.ecommerce.shipping.entity.Shipment;
 import com.ecommerce.shipping.proxy.OrderServiceProxy;
@@ -20,20 +21,20 @@ public class ShippingService {
     @Autowired
     private OrderServiceProxy orderService;
     
-    public Shipment createShippingOrder(Shipment shipment) {
+    public Shipment createShipmentInfo(Shipment shipment) {
         return repository.save(shipment);
     }
     
     
-    public ShippingResponseBean getById(Long orderId) {
-    	Shipment shipment= repository.findById(orderId).orElseThrow(()->  new RuntimeException("Shipping not found"));
+    public ShippingResponseBean getById(Long id) {
+    	Shipment shipment= repository.findById(id).orElseThrow(()->  new RuntimeException("Shipping not found"));
     	var orderDetails = orderService.getOrderById(shipment.getOrderId()).getBody(); 
     	var result = new ShippingResponseBean(shipment, orderDetails);
         return result;
     }
     
-	public Shipment updateshipping(Long orderId, Shipment shipment) {
-	        Optional<Shipment> existingProduct = repository.findByOrderId(orderId);
+	public Shipment updateshipping(Long id, ShipmentReqBean shipment) {
+	        Optional<Shipment> existingProduct = repository.findById(id);
 	        if (existingProduct.isPresent()) {
 	        	Shipment shipupdate = existingProduct.get();
 	        	shipupdate.setDestination(shipment.getDestination());
@@ -41,8 +42,9 @@ public class ShippingService {
 	        	shipupdate.setShippingDate(shipment.getShippingDate());
 	        	shipupdate.setOrderId(shipment.getOrderId());
 	        	shipupdate.setUserId(shipment.getUserId());
+	        	shipupdate.setId(existingProduct.get().getId());
 	        	shipupdate.setStatus(shipment.getStatus());
-	            return repository.save(shipment);
+	            return repository.save(shipupdate);
 	        } else {
 	            throw new RuntimeException("Shipping not found");
 	        }
