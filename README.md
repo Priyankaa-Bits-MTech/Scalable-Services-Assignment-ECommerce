@@ -1,9 +1,18 @@
 # Ecommerce Assignment
 
 ## Demo Video Link
-Part 1: [https://drive.google.com/file/d/1h5kBud3UXMalPAtwr30qfGoaG0HC21sH/view](https://drive.google.com/file/d/11KFk0udYltmRigNX3BuaXE-5NlFhaXw-/view?usp=drive_link)
 
-Part 2: [ https://drive.google.com/file/d/1k5D2hdsik0lwqaAfl4EOVjPlnDVJDRZS/view](https://drive.google.com/file/d/1k5D2hdsik0lwqaAfl4EOVjPlnDVJDRZS/view?usp=drive_link)
+Part 1:
+
+1080p: https://drive.google.com/file/d/11KFk0udYltmRigNX3BuaXE-5NlFhaXw-/view?usp=drive_link
+
+720p: https://drive.google.com/file/d/1wwgapVoIQ9h1xUuWzpGfupC1DJHWlJW-/view?usp=drive_link
+
+Part 2:
+
+1080p: https://drive.google.com/file/d/1k5D2hdsik0lwqaAfl4EOVjPlnDVJDRZS/view?usp=drive_link
+
+720p: https://drive.google.com/file/d/1OE-L_2G28a7P37QLQeD6dbI6ZystUAgB/view?usp=drive_link
 
 
 ## Tech stack used
